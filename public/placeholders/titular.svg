@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+  <defs>
+    <pattern id="ledger" width="600" height="40" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="39.5" x2="600" y2="39.5" stroke="#ffffff" stroke-opacity="0.06"/>
+    </pattern>
+    <radialGradient id="glow" cx="0.7" cy="0.25" r="0.8">
+      <stop offset="0" stop-color="#3f584b"/>
+      <stop offset="1" stop-color="#1d2a24"/>
+    </radialGradient>
+    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0.55" stop-color="#1d2a24" stop-opacity="0"/>
+      <stop offset="1" stop-color="#1d2a24" stop-opacity="0.95"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#glow)"/>
+  <rect width="600" height="800" fill="url(#ledger)"/>
+  <line x1="120" y1="330" x2="480" y2="330" stroke="#ffffff" stroke-opacity="0.22" stroke-width="5"/>
+  <circle cx="365" cy="250" r="46" fill="#c9d6cd" fill-opacity="0.35"/>
+  <text x="300" y="420" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" letter-spacing="4" fill="#ffffff" fill-opacity="0.55">FOTO DEL TITULAR</text>
+  <rect width="600" height="800" fill="url(#fade)"/>
+</svg>

@@ -1,0 +1,185 @@
+@import "tailwindcss";
+
+/* Paleta tomada del logotipo de LH Consultores */
+@theme {
+  --color-paper: #f7f6f2;
+  --color-paper-2: #efede6;
+  --color-ink: #17201c;
+  --color-ink-2: #3a4540;
+  --color-muted: #68706b;
+  --color-line: #e2e1da;
+  --color-forest: #2f4239;
+  --color-forest-2: #3f584b;
+  --color-forest-deep: #1d2a24;
+  --color-sage: #b1b5b0;
+  --color-sage-soft: #e3e9e2;
+  --color-mint: #c9d6cd;
+  --color-brass: #a8875a;
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), ui-serif, Georgia, serif;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink;
+  }
+
+  ::selection {
+    background: var(--color-forest);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-forest);
+    outline-offset: 3px;
+  }
+
+  dialog::backdrop {
+    background: rgb(23 32 28 / 0.55);
+    backdrop-filter: blur(4px);
+  }
+}
+
+@utility container-page {
+  width: 100%;
+  max-width: 76rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+
+  @media (width >= 48rem) {
+    padding-inline: 2rem;
+  }
+}
+
+/* Renglones de libro contable, usados como textura sutil */
+@utility ledger-lines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 39px,
+    rgb(47 66 57 / 0.07) 39px,
+    rgb(47 66 57 / 0.07) 40px
+  );
+}
+
+@utility ledger-lines-light {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 39px,
+    rgb(255 255 255 / 0.06) 39px,
+    rgb(255 255 255 / 0.06) 40px
+  );
+}
+
+/* Borde con brillo de las tarjetas de servicios (React Bits · MagicBento, adaptado a la paleta) */
+.card--border-glow {
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-intensity: 0;
+  --glow-radius: 220px;
+  --glow-rgb: 47 66 57;
+}
+
+.card--border-glow.glow-light {
+  --glow-rgb: 201 214 205;
+}
+
+.card--border-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: inherit;
+  background: radial-gradient(
+    var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+    rgb(var(--glow-rgb) / calc(var(--glow-intensity) * 0.9)) 0%,
+    rgb(var(--glow-rgb) / calc(var(--glow-intensity) * 0.45)) 30%,
+    transparent 60%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card--border-glow:hover {
+  box-shadow: 0 30px 70px -40px rgb(29 42 36 / 0.45);
+}
+
+/* Contenido de las entradas del blog */
+.post-body > * + * {
+  margin-top: 1.4rem;
+}
+
+.post-body p {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--color-ink-2);
+}
+
+.post-body h2 {
+  margin-top: 2.75rem;
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  line-height: 1.2;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+.post-body ul > li {
+  position: relative;
+  padding-left: 1.75rem;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--color-ink-2);
+}
+
+.post-body ul > li + li {
+  margin-top: 0.6rem;
+}
+
+.post-body ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0.25rem;
+  top: 0.72em;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--color-forest);
+}
+
+.post-body blockquote {
+  border-left: 3px solid var(--color-forest);
+  padding: 0.25rem 0 0.25rem 1.5rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.5rem;
+  line-height: 1.45;
+  color: var(--color-forest);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
